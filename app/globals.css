@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --color-v3a-dark: #2c2c2c;
+  --color-v3a-gold: #ffc107;
+  --color-v3a-light: #f5f5f5;
+  --color-v3a-text: #ffffff;
+  --color-v3a-text-secondary: #999999;
+}
+
+@theme inline {
+  --color-v3a-dark: var(--color-v3a-dark);
+  --color-v3a-gold: var(--color-v3a-gold);
+  --color-v3a-light: var(--color-v3a-light);
+  --color-v3a-text: var(--color-v3a-text);
+  --color-v3a-text-secondary: var(--color-v3a-text-secondary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-v3a-dark);
+  color: var(--color-v3a-text);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
