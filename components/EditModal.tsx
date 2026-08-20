@@ -19,6 +19,7 @@ const emptyForm: CDAInput = {
   verba_dimac: '',
   verba_internalizada: '',
   verba_endomarketing: '',
+  verba_portaria808: '',
 };
 
 export function EditModal({ cda, onSave, onClose }: EditModalProps) {
@@ -34,6 +35,7 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
           verba_dimac: cda.verba_dimac ?? '',
           verba_internalizada: cda.verba_internalizada ?? '',
           verba_endomarketing: cda.verba_endomarketing ?? '',
+          verba_portaria808: cda.verba_portaria808 ?? '',
         }
       : emptyForm
   );
@@ -46,7 +48,8 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
       form.codigo_lc_issqn?.trim() ||
       form.verba_dimac?.trim() ||
       form.verba_internalizada?.trim() ||
-      form.verba_endomarketing?.trim();
+      form.verba_endomarketing?.trim() ||
+      form.verba_portaria808?.trim();
 
     if (!form.nome.trim()) {
       setError('Nome é obrigatório');
@@ -65,6 +68,7 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
         verba_dimac: form.verba_dimac?.trim() || null,
         verba_internalizada: form.verba_internalizada?.trim() || null,
         verba_endomarketing: form.verba_endomarketing?.trim() || null,
+        verba_portaria808: form.verba_portaria808?.trim() || null,
       });
       onClose();
     } catch (err) {
@@ -106,7 +110,7 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
             />
           </div>
 
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div>
               <label className="block text-xs font-medium text-v3a-dark mb-1">
                 Verba DIMAC
@@ -137,6 +141,17 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
                 type="text"
                 value={form.verba_endomarketing ?? ''}
                 onChange={(e) => setForm({ ...form, verba_endomarketing: e.target.value })}
+                className="w-full px-2 py-2 border border-gray-300 rounded-lg text-v3a-dark text-sm focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-v3a-dark mb-1">
+                Portaria 808
+              </label>
+              <input
+                type="text"
+                value={form.verba_portaria808 ?? ''}
+                onChange={(e) => setForm({ ...form, verba_portaria808: e.target.value })}
                 className="w-full px-2 py-2 border border-gray-300 rounded-lg text-v3a-dark text-sm focus:outline-none focus:ring-2 focus:ring-v3a-gold"
               />
             </div>

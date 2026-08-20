@@ -1,6 +1,12 @@
 'use client';
 
-export type FilterValue = 'todos' | 'dipes' | 'dimac' | 'internalizada' | 'endomarketing';
+export type FilterValue =
+  | 'todos'
+  | 'dipes'
+  | 'dimac'
+  | 'internalizada'
+  | 'endomarketing'
+  | 'portaria808';
 
 interface FilterChipsProps {
   onFilterChange: (tipo: FilterValue) => void;
@@ -13,6 +19,7 @@ const FILTERS: { label: string; value: FilterValue }[] = [
   { label: 'DIMAC', value: 'dimac' },
   { label: 'Internalizada', value: 'internalizada' },
   { label: 'Endomarketing', value: 'endomarketing' },
+  { label: 'Portaria 808', value: 'portaria808' },
 ];
 
 export function FilterChips({ onFilterChange, activeFilter }: FilterChipsProps) {

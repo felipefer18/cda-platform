@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS cdas (
   verba_dimac TEXT,
   verba_internalizada TEXT,
   verba_endomarketing TEXT,
+  verba_portaria808 TEXT,
 
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),

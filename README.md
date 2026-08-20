@@ -33,7 +33,9 @@ Abra [http://localhost:3000](http://localhost:3000).
 
 ### 4. Dados já importados
 
-Os 211 CDAs reais já foram importados: **75 corporativos** (Dipes.xlsx) + **136 de promoção** (fonte: `cda-data.json` do site que gerou o PDF "Consulta de CDA V3A"). Não é preciso rodar `supabase/seed.sql` — ele só tem 3 registros de exemplo e foi superado pela importação real.
+Os 228 CDAs reais já foram importados: **75 corporativos** (Dipes.xlsx) + **153 de promoção** (mesclados de `cda-data.json` do site do PDF "Consulta de CDA V3A" com a planilha "TABELA EVENTOS CDA - MP 808", que trouxe o código de verba **Portaria 808** e mais 17 CDAs novos). Não é preciso rodar `supabase/seed.sql` — ele só tem 3 registros de exemplo e foi superado pela importação real.
+
+CDAs de promoção têm até 4 códigos de verba: DIMAC, Internalizada, Endomarketing e Portaria 808 — nenhum garantido presente em todos os registros.
 
 Para importar mais CDAs no futuro, use `/admin` → **Importar Excel**. O parser espera estas colunas (ou os nomes alternativos já mapeados em `components/ExcelUpload.tsx`):
 

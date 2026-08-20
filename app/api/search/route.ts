@@ -9,6 +9,7 @@ const VERBA_COLUMN: Record<string, string> = {
   dimac: 'verba_dimac',
   internalizada: 'verba_internalizada',
   endomarketing: 'verba_endomarketing',
+  portaria808: 'verba_portaria808',
 };
 
 export async function GET(req: NextRequest) {
@@ -32,7 +33,7 @@ export async function GET(req: NextRequest) {
 
     if (q) {
       query = query.or(
-        `nome.ilike.%${q}%,codigo_lc_issqn.ilike.%${q}%,categoria_lc.ilike.%${q}%,descricao.ilike.%${q}%,verba_dimac.ilike.%${q}%,verba_internalizada.ilike.%${q}%,verba_endomarketing.ilike.%${q}%`
+        `nome.ilike.%${q}%,codigo_lc_issqn.ilike.%${q}%,categoria_lc.ilike.%${q}%,descricao.ilike.%${q}%,verba_dimac.ilike.%${q}%,verba_internalizada.ilike.%${q}%,verba_endomarketing.ilike.%${q}%,verba_portaria808.ilike.%${q}%`
       );
     }
 

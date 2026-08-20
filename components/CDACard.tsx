@@ -13,12 +13,12 @@ function issqnCode(categoriaLc: string) {
 
 export function CDACard({ cda }: CDACardProps) {
   const descricao = cda.descricao ?? '';
-  const preview = descricao.length > 160 ? `${descricao.slice(0, 160)}...` : descricao;
 
   const verbas = [
     { label: 'DIMAC', value: cda.verba_dimac },
     { label: 'Internalizada', value: cda.verba_internalizada },
     { label: 'Endomarketing', value: cda.verba_endomarketing },
+    { label: 'Portaria 808', value: cda.verba_portaria808 },
   ].filter((v) => v.value);
 
   return (
@@ -66,8 +66,8 @@ export function CDACard({ cda }: CDACardProps) {
         </div>
       )}
 
-      {preview && (
-        <p className="text-[11px] text-v3a-dark leading-relaxed mb-3">{preview}</p>
+      {descricao && (
+        <p className="text-[11px] text-v3a-dark leading-relaxed mb-3">{descricao}</p>
       )}
 
       {cda.retem_inss && (

@@ -88,7 +88,8 @@ export default function AdminDashboard() {
         cda.codigo_lc_issqn?.toLowerCase().includes(q) ||
         cda.verba_dimac?.toLowerCase().includes(q) ||
         cda.verba_internalizada?.toLowerCase().includes(q) ||
-        cda.verba_endomarketing?.toLowerCase().includes(q)
+        cda.verba_endomarketing?.toLowerCase().includes(q) ||
+        cda.verba_portaria808?.toLowerCase().includes(q)
     );
   }, [cdas, search]);
 

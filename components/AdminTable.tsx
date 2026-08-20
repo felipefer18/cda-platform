@@ -12,7 +12,14 @@ interface AdminTableProps {
 type SortKey = 'nome' | 'codigo';
 
 function displayCodigo(cda: CDA) {
-  return cda.codigo_lc_issqn || cda.verba_dimac || cda.verba_internalizada || cda.verba_endomarketing || '—';
+  return (
+    cda.codigo_lc_issqn ||
+    cda.verba_dimac ||
+    cda.verba_internalizada ||
+    cda.verba_endomarketing ||
+    cda.verba_portaria808 ||
+    '—'
+  );
 }
 
 export function AdminTable({ cdas, onEdit, onDelete }: AdminTableProps) {

@@ -13,7 +13,8 @@ function isValidCDA(body: unknown): body is CDAInput {
     hasText(b.codigo_lc_issqn) ||
     hasText(b.verba_dimac) ||
     hasText(b.verba_internalizada) ||
-    hasText(b.verba_endomarketing);
+    hasText(b.verba_endomarketing) ||
+    hasText(b.verba_portaria808);
   return hasText(b.nome) && hasAnyCode && (b.tipo === 'corporativo' || b.tipo === 'promoção');
 }
 

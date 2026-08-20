@@ -43,12 +43,21 @@ function parseRows(rows: ExcelRow[]): ExcelCDA[] {
         verba_endomarketing: row['Verba Endomarketing']
           ? String(row['Verba Endomarketing']).trim() || null
           : null,
+        verba_portaria808:
+          row['Portaria 808'] ?? row['PORTARIA 808'] ?? row['verba_portaria808']
+            ? String(row['Portaria 808'] ?? row['PORTARIA 808'] ?? row['verba_portaria808']).trim() ||
+              null
+            : null,
       };
     })
     .filter(
       (cda) =>
         cda.nome &&
-        (cda.codigo_lc_issqn || cda.verba_dimac || cda.verba_internalizada || cda.verba_endomarketing)
+        (cda.codigo_lc_issqn ||
+          cda.verba_dimac ||
+          cda.verba_internalizada ||
+          cda.verba_endomarketing ||
+          cda.verba_portaria808)
     );
 }
 
