@@ -15,11 +15,11 @@ interface FilterChipsProps {
 
 const FILTERS: { label: string; value: FilterValue }[] = [
   { label: 'Todos', value: 'todos' },
-  { label: 'DIPES', value: 'dipes' },
-  { label: 'DIMAC', value: 'dimac' },
-  { label: 'Internalizada', value: 'internalizada' },
-  { label: 'Endomarketing', value: 'endomarketing' },
-  { label: 'Portaria 808', value: 'portaria808' },
+  { label: 'Verba DIPES', value: 'dipes' },
+  { label: 'Verba DIMAC', value: 'dimac' },
+  { label: 'Verba Internalizada', value: 'internalizada' },
+  { label: 'Verba Endomarketing', value: 'endomarketing' },
+  { label: 'Verba Portaria 808', value: 'portaria808' },
 ];
 
 export function FilterChips({ onFilterChange, activeFilter }: FilterChipsProps) {

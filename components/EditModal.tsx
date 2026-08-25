@@ -20,6 +20,12 @@ const emptyForm: CDAInput = {
   verba_internalizada: '',
   verba_endomarketing: '',
   verba_portaria808: '',
+  irpj: null,
+  cofins: null,
+  csll: null,
+  pis_pasep: null,
+  retem_iss: false,
+  encaminhamentos: '',
 };
 
 export function EditModal({ cda, onSave, onClose }: EditModalProps) {
@@ -36,6 +42,12 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
           verba_internalizada: cda.verba_internalizada ?? '',
           verba_endomarketing: cda.verba_endomarketing ?? '',
           verba_portaria808: cda.verba_portaria808 ?? '',
+          irpj: cda.irpj,
+          cofins: cda.cofins,
+          csll: cda.csll,
+          pis_pasep: cda.pis_pasep,
+          retem_iss: cda.retem_iss,
+          encaminhamentos: cda.encaminhamentos ?? '',
         }
       : emptyForm
   );
@@ -69,6 +81,7 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
         verba_internalizada: form.verba_internalizada?.trim() || null,
         verba_endomarketing: form.verba_endomarketing?.trim() || null,
         verba_portaria808: form.verba_portaria808?.trim() || null,
+        encaminhamentos: form.encaminhamentos?.trim() || null,
       });
       onClose();
     } catch (err) {
@@ -157,6 +170,62 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
             </div>
           </div>
 
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div>
+              <label className="block text-xs font-medium text-v3a-dark mb-1">IRPJ (%)</label>
+              <input
+                type="number"
+                step="0.01"
+                value={form.irpj ?? ''}
+                onChange={(e) =>
+                  setForm({ ...form, irpj: e.target.value === '' ? null : parseFloat(e.target.value) })
+                }
+                className="w-full px-2 py-2 border border-gray-300 rounded-lg text-v3a-dark text-sm focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-v3a-dark mb-1">COFINS (%)</label>
+              <input
+                type="number"
+                step="0.01"
+                value={form.cofins ?? ''}
+                onChange={(e) =>
+                  setForm({ ...form, cofins: e.target.value === '' ? null : parseFloat(e.target.value) })
+                }
+                className="w-full px-2 py-2 border border-gray-300 rounded-lg text-v3a-dark text-sm focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-v3a-dark mb-1">CSLL (%)</label>
+              <input
+                type="number"
+                step="0.01"
+                value={form.csll ?? ''}
+                onChange={(e) =>
+                  setForm({ ...form, csll: e.target.value === '' ? null : parseFloat(e.target.value) })
+                }
+                className="w-full px-2 py-2 border border-gray-300 rounded-lg text-v3a-dark text-sm focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-v3a-dark mb-1">
+                PIS/PASEP (%)
+              </label>
+              <input
+                type="number"
+                step="0.01"
+                value={form.pis_pasep ?? ''}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    pis_pasep: e.target.value === '' ? null : parseFloat(e.target.value),
+                  })
+                }
+                className="w-full px-2 py-2 border border-gray-300 rounded-lg text-v3a-dark text-sm focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+              />
+            </div>
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-v3a-dark mb-1">Descrição</label>
             <textarea
@@ -195,15 +264,38 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-v3a-dark">
-            <input
-              type="checkbox"
-              checked={form.retem_inss}
-              onChange={(e) => setForm({ ...form, retem_inss: e.target.checked })}
-              className="h-4 w-4"
+          <div>
+            <label className="block text-sm font-medium text-v3a-dark mb-1">
+              Encaminhamentos para absorção do serviço
+            </label>
+            <textarea
+              value={form.encaminhamentos ?? ''}
+              onChange={(e) => setForm({ ...form, encaminhamentos: e.target.value })}
+              rows={2}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-v3a-dark focus:outline-none focus:ring-2 focus:ring-v3a-gold"
             />
-            Retém INSS
-          </label>
+          </div>
+
+          <div className="flex gap-4">
+            <label className="flex items-center gap-2 text-sm text-v3a-dark">
+              <input
+                type="checkbox"
+                checked={form.retem_inss}
+                onChange={(e) => setForm({ ...form, retem_inss: e.target.checked })}
+                className="h-4 w-4"
+              />
+              Retém INSS
+            </label>
+            <label className="flex items-center gap-2 text-sm text-v3a-dark">
+              <input
+                type="checkbox"
+                checked={form.retem_iss}
+                onChange={(e) => setForm({ ...form, retem_iss: e.target.checked })}
+                className="h-4 w-4"
+              />
+              Retém ISS
+            </label>
+          </div>
 
           {error && <p className="text-sm text-red-600">{error}</p>}
 

@@ -23,6 +23,15 @@ CREATE TABLE IF NOT EXISTS cdas (
   verba_endomarketing TEXT,
   verba_portaria808 TEXT,
 
+  -- Detalhes extras (aba "Tabela CDA"), só disponíveis para parte dos CDAs
+  -- de promoção. Percentuais de retenção na fonte.
+  irpj NUMERIC(5,2),
+  cofins NUMERIC(5,2),
+  csll NUMERIC(5,2),
+  pis_pasep NUMERIC(5,2),
+  retem_iss BOOLEAN NOT NULL DEFAULT false,
+  encaminhamentos TEXT,
+
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   deleted_at TIMESTAMPTZ DEFAULT NULL

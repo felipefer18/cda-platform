@@ -3,12 +3,19 @@
 import { useEffect, useRef, useState } from 'react';
 
 interface SearchBarProps {
+  value: string;
   onSearch: (query: string) => void;
 }
 
-export function SearchBar({ onSearch }: SearchBarProps) {
-  const [value, setValue] = useState('');
+export function SearchBar({ value, onSearch }: SearchBarProps) {
+  const [local, setLocal] = useState(value);
+  const [syncedValue, setSyncedValue] = useState(value);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  if (value !== syncedValue) {
+    setSyncedValue(value);
+    setLocal(value);
+  }
 
   useEffect(() => {
     return () => {
@@ -18,7 +25,7 @@ export function SearchBar({ onSearch }: SearchBarProps) {
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newValue = e.target.value;
-    setValue(newValue);
+    setLocal(newValue);
 
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
@@ -27,14 +34,12 @@ export function SearchBar({ onSearch }: SearchBarProps) {
   }
 
   return (
-    <div className="w-full mb-6">
-      <input
-        type="text"
-        placeholder="Buscar por nome, código ou descrição..."
-        value={value}
-        onChange={handleChange}
-        className="w-full px-4 py-3 border border-v3a-gold rounded-lg focus:outline-none focus:ring-2 focus:ring-v3a-gold bg-v3a-light text-v3a-dark placeholder:text-v3a-text-secondary"
-      />
-    </div>
+    <input
+      type="text"
+      placeholder="Buscar por nome, código ou descrição..."
+      value={local}
+      onChange={handleChange}
+      className="flex-1 w-full px-4 py-3 border border-v3a-gold rounded-lg sm:rounded-l-none sm:rounded-r-lg focus:outline-none focus:ring-2 focus:ring-v3a-gold bg-v3a-light text-v3a-dark placeholder:text-v3a-text-secondary"
+    />
   );
 }

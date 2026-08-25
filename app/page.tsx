@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import { CDACardGrid } from '@/components/CDACardGrid';
 import { SearchBar } from '@/components/SearchBar';
+import { NomeCombobox } from '@/components/NomeCombobox';
 import { FilterChips, FilterValue } from '@/components/FilterChips';
 import { CDAsResponse } from '@/lib/types';
 
@@ -53,7 +54,10 @@ export default function Home() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <SearchBar onSearch={handleSearch} />
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 mb-6">
+          <NomeCombobox onSelect={handleSearch} />
+          <SearchBar value={query} onSearch={handleSearch} />
+        </div>
         <FilterChips activeFilter={filterType} onFilterChange={handleFilterChange} />
       </div>
 
