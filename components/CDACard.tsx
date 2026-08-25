@@ -22,20 +22,26 @@ export function CDACard({ cda, onClick }: CDACardProps) {
     { label: 'Portaria 808', value: cda.verba_portaria808 },
   ].filter((v) => v.value);
 
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  }
+
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
-      className="text-left w-full bg-v3a-light border border-gray-200 rounded-lg p-5 hover:shadow-md hover:border-v3a-gold transition-all cursor-pointer"
+      onKeyDown={handleKeyDown}
+      className="relative text-left w-full bg-v3a-light border border-gray-200 rounded-lg p-5 hover:shadow-md hover:border-v3a-gold transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-v3a-gold"
     >
-      <div className="flex justify-between items-start gap-2 mb-3">
-        <h3 className="font-semibold text-v3a-dark text-sm leading-snug min-h-[2.5rem] flex items-start">
-          {cda.nome}
-        </h3>
-        <span className="shrink-0 text-[11px] font-medium bg-v3a-gold text-v3a-dark px-2 py-0.5 rounded">
-          {cda.tipo === 'corporativo' ? 'Corp' : 'Promo'}
-        </span>
-      </div>
+      <span className="absolute top-5 right-5 shrink-0 text-[11px] font-medium bg-v3a-gold text-v3a-dark px-2 py-0.5 rounded">
+        {cda.tipo === 'corporativo' ? 'Corp' : 'Promo'}
+      </span>
+
+      <h3 className="font-semibold text-v3a-dark text-sm leading-snug pr-16 mb-3">{cda.nome}</h3>
 
       {(cda.codigo_lc_issqn || cda.categoria_lc) && (
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 pb-3 border-b border-gray-200">
@@ -83,6 +89,6 @@ export function CDACard({ cda, onClick }: CDACardProps) {
           {cda.retem_iss && <span className="text-xs text-red-600">⚠ Retém ISS</span>}
         </div>
       )}
-    </button>
+    </div>
   );
 }
