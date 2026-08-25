@@ -29,7 +29,9 @@ export function CDACard({ cda, onClick }: CDACardProps) {
       className="text-left w-full bg-v3a-light border border-gray-200 rounded-lg p-5 hover:shadow-md hover:border-v3a-gold transition-all cursor-pointer"
     >
       <div className="flex justify-between items-start gap-2 mb-3">
-        <h3 className="font-semibold text-v3a-dark text-sm leading-snug">{cda.nome}</h3>
+        <h3 className="font-semibold text-v3a-dark text-sm leading-snug min-h-[2.5rem] flex items-start">
+          {cda.nome}
+        </h3>
         <span className="shrink-0 text-[11px] font-medium bg-v3a-gold text-v3a-dark px-2 py-0.5 rounded">
           {cda.tipo === 'corporativo' ? 'Corp' : 'Promo'}
         </span>
