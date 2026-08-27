@@ -35,7 +35,7 @@ export function CDACard({ cda, onClick }: CDACardProps) {
       tabIndex={0}
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      className="relative text-left w-full bg-v3a-light border border-gray-200 rounded-lg p-5 hover:shadow-md hover:border-v3a-gold transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+      className="group relative flex flex-col h-full text-left w-full bg-v3a-light border border-gray-200 rounded-lg p-5 hover:shadow-lg hover:border-v3a-gold hover:-translate-y-0.5 transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-v3a-gold"
     >
       <span className="absolute top-5 right-5 shrink-0 text-[11px] font-medium bg-v3a-gold text-v3a-dark px-2 py-0.5 rounded">
         {cda.tipo === 'corporativo' ? 'Corp' : 'Promo'}
@@ -84,11 +84,16 @@ export function CDACard({ cda, onClick }: CDACardProps) {
       )}
 
       {(cda.retem_inss || cda.retem_iss) && (
-        <div className="flex gap-3">
+        <div className="flex gap-3 mb-1">
           {cda.retem_inss && <span className="text-xs text-red-600">⚠ Retém INSS</span>}
           {cda.retem_iss && <span className="text-xs text-red-600">⚠ Retém ISS</span>}
         </div>
       )}
+
+      <div className="mt-auto pt-3 flex items-center gap-1 text-xs font-semibold text-v3a-gold">
+        Ver mais detalhes
+        <span className="transition-transform group-hover:translate-x-1">→</span>
+      </div>
     </div>
   );
 }
