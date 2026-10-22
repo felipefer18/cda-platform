@@ -78,7 +78,7 @@ export function AdminTable({ cdas, onEdit, onDelete }: AdminTableProps) {
               <td className="py-2 pr-4 text-v3a-dark">{cda.nome}</td>
               <td className="py-2 pr-4 text-v3a-dark">{displayCodigo(cda)}</td>
               <td className="py-2 pr-4 text-v3a-dark capitalize">{cda.tipo}</td>
-              <td className="py-2 pr-4 text-v3a-dark">{cda.retem_inss ? 'Sim' : 'Não'}</td>
+              <td className="py-2 pr-4 text-v3a-dark">{cda.retem_inss === null ? '—' : cda.retem_inss ? 'Sim' : 'Não'}</td>
               <td className="py-2 pr-4">
                 <div className="flex gap-2">
                   <button

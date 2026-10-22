@@ -5,7 +5,10 @@ export type CDA = {
   descricao: string;
   tipo: 'corporativo' | 'promoção';
   categoria_lc: string;
-  retem_inss: boolean;
+  retem_inss: boolean | null;
+  excecao_inss: string | null;
+  observacoes: string | null;
+  outras_observacoes: string | null;
   verba_dimac: string | null;
   verba_internalizada: string | null;
   verba_endomarketing: string | null;

@@ -12,7 +12,14 @@ CREATE TABLE IF NOT EXISTS cdas (
 
   tipo TEXT NOT NULL CHECK (tipo IN ('corporativo', 'promoção')),
   categoria_lc TEXT,
-  retem_inss BOOLEAN NOT NULL DEFAULT false,
+  -- NULL = a planilha não informa (campo em branco)
+  retem_inss BOOLEAN DEFAULT false,
+  -- Texto de exceção do INSS, ex.: "EXCETO OPTANTES PELO SIMPLES NACIONAL"
+  excecao_inss TEXT,
+
+  -- Observações da planilha DIPES
+  observacoes TEXT,
+  outras_observacoes TEXT,
 
   -- Códigos de verba dos CDAs de promoção (planilha "Consulta de CDA V3A").
   -- Cada CDA de promoção pode ter até 3 códigos distintos, nenhum garantido

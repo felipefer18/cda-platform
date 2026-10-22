@@ -16,6 +16,9 @@ const emptyForm: CDAInput = {
   tipo: 'corporativo',
   categoria_lc: '',
   retem_inss: false,
+  excecao_inss: '',
+  observacoes: '',
+  outras_observacoes: '',
   verba_dimac: '',
   verba_internalizada: '',
   verba_endomarketing: '',
@@ -38,6 +41,9 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
           tipo: cda.tipo,
           categoria_lc: cda.categoria_lc,
           retem_inss: cda.retem_inss,
+          excecao_inss: cda.excecao_inss ?? '',
+          observacoes: cda.observacoes ?? '',
+          outras_observacoes: cda.outras_observacoes ?? '',
           verba_dimac: cda.verba_dimac ?? '',
           verba_internalizada: cda.verba_internalizada ?? '',
           verba_endomarketing: cda.verba_endomarketing ?? '',
@@ -82,6 +88,9 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
         verba_endomarketing: form.verba_endomarketing?.trim() || null,
         verba_portaria808: form.verba_portaria808?.trim() || null,
         encaminhamentos: form.encaminhamentos?.trim() || null,
+        excecao_inss: form.excecao_inss?.trim() || null,
+        observacoes: form.observacoes?.trim() || null,
+        outras_observacoes: form.outras_observacoes?.trim() || null,
       });
       onClose();
     } catch (err) {
@@ -276,11 +285,46 @@ export function EditModal({ cda, onSave, onClose }: EditModalProps) {
             />
           </div>
 
+          <div>
+            <label className="block text-sm font-medium text-v3a-dark mb-1">
+              Observações / exemplos práticos
+            </label>
+            <textarea
+              value={form.observacoes ?? ''}
+              onChange={(e) => setForm({ ...form, observacoes: e.target.value })}
+              rows={2}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-v3a-dark focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-v3a-dark mb-1">Outras observações</label>
+            <textarea
+              value={form.outras_observacoes ?? ''}
+              onChange={(e) => setForm({ ...form, outras_observacoes: e.target.value })}
+              rows={2}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-v3a-dark focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-v3a-dark mb-1">
+              Exceção do INSS (opcional)
+            </label>
+            <input
+              type="text"
+              value={form.excecao_inss ?? ''}
+              onChange={(e) => setForm({ ...form, excecao_inss: e.target.value })}
+              placeholder="Ex.: EXCETO OPTANTES PELO SIMPLES NACIONAL"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-v3a-dark focus:outline-none focus:ring-2 focus:ring-v3a-gold"
+            />
+          </div>
+
           <div className="flex gap-4">
             <label className="flex items-center gap-2 text-sm text-v3a-dark">
               <input
                 type="checkbox"
-                checked={form.retem_inss}
+                checked={!!form.retem_inss}
                 onChange={(e) => setForm({ ...form, retem_inss: e.target.checked })}
                 className="h-4 w-4"
               />

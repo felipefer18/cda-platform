@@ -88,7 +88,11 @@ export function CDACard({ cda, onClick }: CDACardProps) {
 
       {(cda.retem_inss || cda.retem_iss) && (
         <div className="flex gap-3 mb-1">
-          {cda.retem_inss && <span className="text-xs text-red-600">⚠ Retém INSS</span>}
+          {cda.retem_inss && (
+            <span className="text-xs text-red-600">
+              ⚠ Retém INSS{cda.excecao_inss ? ` (${cda.excecao_inss})` : ''}
+            </span>
+          )}
           {cda.retem_iss && <span className="text-xs text-red-600">⚠ Retém ISS</span>}
         </div>
       )}

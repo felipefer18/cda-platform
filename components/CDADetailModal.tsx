@@ -95,6 +95,28 @@ export function CDADetailModal({ cda, onClose }: CDADetailModalProps) {
           </div>
         )}
 
+        {cda.observacoes && (
+          <div className="mb-4">
+            <p className="text-[10px] font-bold uppercase tracking-wide text-v3a-text-secondary mb-1">
+              Observações / exemplos práticos
+            </p>
+            <p className="text-sm text-v3a-dark leading-relaxed whitespace-pre-line">
+              {cda.observacoes}
+            </p>
+          </div>
+        )}
+
+        {cda.outras_observacoes && (
+          <div className="mb-4">
+            <p className="text-[10px] font-bold uppercase tracking-wide text-v3a-text-secondary mb-1">
+              Outras observações
+            </p>
+            <p className="text-sm text-v3a-dark leading-relaxed whitespace-pre-line">
+              {cda.outras_observacoes}
+            </p>
+          </div>
+        )}
+
         {cda.encaminhamentos && (
           <div className="mb-4">
             <p className="text-[10px] font-bold uppercase tracking-wide text-v3a-text-secondary mb-1">
@@ -124,8 +146,12 @@ export function CDADetailModal({ cda, onClose }: CDADetailModalProps) {
           </div>
         )}
 
-        <div className="flex gap-4 text-sm">
-          {cda.retem_inss && <span className="text-red-600">⚠ Retém INSS</span>}
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {cda.retem_inss && (
+            <span className="text-red-600">
+              ⚠ Retém INSS{cda.excecao_inss ? ` (${cda.excecao_inss})` : ''}
+            </span>
+          )}
           {cda.retem_iss && <span className="text-red-600">⚠ Retém ISS</span>}
         </div>
       </div>
