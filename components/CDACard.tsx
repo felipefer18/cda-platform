@@ -7,6 +7,9 @@ interface CDACardProps {
 
 function issqnCode(categoriaLc: string) {
   const trimmed = categoriaLc.trim();
+  // Formato da planilha DIPES/Agência: "... Desdobramento : 1213 ..." => 12.13
+  const desdobramento = trimmed.match(/Desdobramento\s*:\s*(\d{2})(\d{2})/i);
+  if (desdobramento) return `${desdobramento[1]}.${desdobramento[2]}`;
   const numeric = trimmed.match(/^\d+(\.\d+)*/);
   if (numeric) return numeric[0];
   return trimmed.split(/[–-]/)[0].trim();
